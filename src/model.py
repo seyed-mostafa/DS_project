@@ -45,7 +45,7 @@ class TrieTree:
         temp.alphabet[self._charToIndex(sentence[index])] = node
         print("Sentence successfully added")
 
-    def search(self, sentence):
+    def search(self, sentence, delete=False):
         sentence = sentence.lower()
         temp = self.root
         index = 0
@@ -58,7 +58,11 @@ class TrieTree:
                 return
 
         if temp.end_sentence:
-            print("Sentence has found :)")
+            if delete:
+                temp.end_sentence = False
+                print("Sentence successfully deleted")
+            else:
+                print("Sentence has found :)")
         else:
             print("This sentence not in tree :(")
 
@@ -89,8 +93,8 @@ class TrieTree:
 
 
 
-    def delete(self):
-        pass
+    def delete(self, sentence):
+        self.search(sentence, True)
 
 
     @staticmethod
