@@ -20,14 +20,13 @@ def command():
             case "1":
                 tree.insert_sentence(input("input your sentence: "))
             case "2":
-                tree.search(input("input your sentence: "))
+                tree.delete(input("input your sentence: "))
             case "3":
                 tree.search(input("input your sentence: "))
             case "4":
-                print("I'm a teapot")
-                make_coffee()
+                tree.auto_complete(input("input your sentence: "))
             case "5":
-                print("I'm a teapot")
-                make_coffee()
+                print("\n\n\t\t\t\tThank you ......we hope you come back soon\n")
+                return
             case _:
                 pass

@@ -63,6 +63,36 @@ class TrieTree:
             print("This sentence not in tree :(")
 
 
+    def auto_complete(self, sentence):
+        sentence = sentence.lower()
+        possible_sentence = []
+        temp = self.root
+
+        index = 0
+        for index in range(len(sentence)):
+
+            if temp.alphabet[self._charToIndex(sentence[index])]:
+                temp = temp.alphabet[self._charToIndex(sentence[index])]
+            else:
+                print("Nothing to complete")
+                return
+
+        self.search_by_node(temp, sentence[:index+1])
+
+    def search_by_node(self, node, result):
+        if node.end_sentence:
+            print(result)
+        for i in range(27):
+            if node.alphabet[i]:
+                self.search_by_node(node.alphabet[i], result + self._IndexToChar(i))
+
+
+
+
+    def delete(self):
+        pass
+
+
     @staticmethod
     def _charToIndex(ch):
         """
@@ -75,5 +105,11 @@ class TrieTree:
             return 26
         return ord(ch) - ord('a')
 
+
+    @staticmethod
+    def _IndexToChar(index):
+        if index == 26:    # space
+            return " "
+        return chr(index + 97)
 
 
